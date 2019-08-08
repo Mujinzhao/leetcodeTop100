@@ -49,7 +49,7 @@ public class RevertLinkedList206 {
     public void pint(ListNode head){
         ListNode node = head;
         while(node != null){
-            System.out.println(node.getVal());
+            System.out.println(node.val);
             node = node.next;
         }
     }
