@@ -60,6 +60,7 @@ public class PartitionNumsEquels {
             System.out.println();
         }
 
+        int a=1;
         return dp[sum][nums.length];
     }
 
