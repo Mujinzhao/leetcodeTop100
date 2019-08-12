@@ -1,5 +1,7 @@
 package DeadThread;
 
+import java.util.Vector;
+
 /**
  * @ClassName LockA
  * @Description TODO
@@ -23,7 +25,6 @@ public class LockAandB {
                 System.out.println("线程1得到B对象的锁");
             }
         }
-
     }
 
     public void LockB(){
