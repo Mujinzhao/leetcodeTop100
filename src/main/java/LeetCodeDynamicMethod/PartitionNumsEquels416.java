@@ -24,6 +24,8 @@ package LeetCodeDynamicMethod;
  * 输出: false
  *
  * 解释: 数组不能分割成两个元素和相等的子集.
+ *
+ * 解题思路：动态规划中的 01背包 问题变种，每一个物品只有选或者不选，并且当前的状态（dp(i~j);当前）只会从 上一个状态（）
  */
 public class PartitionNumsEquels416 {
     public boolean canPartition(int[] nums) {

@@ -9,6 +9,7 @@ import Interface.AbstractClass;
 import Interface.Anlimail;
 import Interface.ImplAbstract;
 import Interface.TestLamdaFunction;
+import LeetCodeBaseDate.ListNode;
 import Pagkage.Normal;
 import Pagkage.SonNormal;
 import Redis.BloomFilterTest;
@@ -22,6 +23,7 @@ import java.util.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -118,40 +120,80 @@ public class Main{
 //            thread02.start();
 //
             /***************************TEST  synchronized 是不是 从阻塞初  继续执行 **************/
-            TestReentranLock reentranLock = new TestReentranLock();
-            CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
+//            TestReentranLock reentranLock = new TestReentranLock();
+//            CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
+//            Thread thread01 = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        cyclicBarrier.await();
+//                    }catch (BrokenBarrierException ex){
+//
+//                    }catch (InterruptedException e){
+//
+//                    }
+//                    reentranLock.getReenLock();
+//                }
+//            });
+//            Thread thread02 = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        cyclicBarrier.await();
+//                    }catch (BrokenBarrierException e){
+//
+//                    }catch (InterruptedException ex){
+//
+//                    }
+//                    reentranLock.getReenLock();
+//                }
+//            });
+//            thread01.start();
+//            try {
+//                Thread.sleep(1000);
+//            }catch (InterruptedException ex){
+//
+//            }
+//            thread02.start();
+
+            /********************************  java集合的 fail - fast 现象 *****************************/
+            List<Integer> list = new ArrayList<>();
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(5);
+            list.add(6);
+            list.add(7);
             Thread thread01 = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try {
-                        cyclicBarrier.await();
-                    }catch (BrokenBarrierException ex){
+                    Iterator<Integer> iterator = list.iterator();
+                    while(iterator.hasNext()){
+                        int temp = iterator.next();
+                        System.out.println(temp + " ");
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        }catch (InterruptedException ex){
 
-                    }catch (InterruptedException e){
-
+                        }
                     }
-                    reentranLock.getReenLock();
                 }
             });
+
             Thread thread02 = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        cyclicBarrier.await();
-                    }catch (BrokenBarrierException e){
-
+                        TimeUnit.SECONDS.sleep(3);
                     }catch (InterruptedException ex){
 
                     }
-                    reentranLock.getReenLock();
+                    list.remove(3);
                 }
             });
-            thread01.start();
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException ex){
 
-            }
+            thread01.start();
             thread02.start();
 
             System.out.println("main thread over");
