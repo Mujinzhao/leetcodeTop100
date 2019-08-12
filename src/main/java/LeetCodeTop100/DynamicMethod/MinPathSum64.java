@@ -1,4 +1,4 @@
-package LeetCodeTop100;
+package LeetCodeTop100.DynamicMethod;
 
 /**
  * @ClassName MinPathSum64
@@ -28,12 +28,6 @@ package LeetCodeTop100;
  * 链接：https://leetcode-cn.com/problems/minimum-path-sum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-
-import LeetCodeBaseDate.ListNode;
-
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * 思路1：用搜索的方式进行，广度优先（优先队列）的方式遍历所有的路径，取其中最小的一个路径即可。

@@ -1,4 +1,4 @@
-package LeetCodeTop100;
+package LeetCodeTop100.DynamicMethod;
 
 /**
  * leetcode 416 分割等和子集

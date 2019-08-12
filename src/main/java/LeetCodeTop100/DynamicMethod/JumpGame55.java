@@ -1,4 +1,4 @@
-package LeetCodeTop100;
+package LeetCodeTop100.DynamicMethod;
 
 /**
  * @ClassName JumpGame55
