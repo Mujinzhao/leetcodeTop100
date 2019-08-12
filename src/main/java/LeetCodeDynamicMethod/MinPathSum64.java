@@ -1,4 +1,4 @@
-package LeetCodeTop100.DynamicMethod;
+package LeetCodeDynamicMethod;
 
 /**
  * @ClassName MinPathSum64

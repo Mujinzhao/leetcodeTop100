@@ -1,4 +1,4 @@
-package LeetCodeTop100.DynamicMethod;
+package LeetCodeDynamicMethod;
 
 /**
  * leetcode 416 分割等和子集
@@ -25,7 +25,7 @@ package LeetCodeTop100.DynamicMethod;
  *
  * 解释: 数组不能分割成两个元素和相等的子集.
  */
-public class PartitionNumsEquels {
+public class PartitionNumsEquels416 {
     public boolean canPartition(int[] nums) {
         int sum = 0;
         for(int temp : nums){
@@ -66,7 +66,7 @@ public class PartitionNumsEquels {
 
     public static void main(String[] args) {
         int[] nums = {1,5,11,5};
-        PartitionNumsEquels instance = new PartitionNumsEquels();
+        PartitionNumsEquels416 instance = new PartitionNumsEquels416();
         System.out.println(instance.canPartition(nums));
     }
 }
