@@ -1,3 +1,4 @@
+import CallableTest.Call;
 import DeadThread.LockAandB;
 import DeadThread.TestReentranLock;
 import DeadThread.TestSyncLock;
@@ -196,7 +197,31 @@ public class Main{
 //            System.out.println("main thread over");
 
             /**************************************  测试接口中的默认函数 *********************************/
-            Anlimail anlimail = new DefaultInterfaceTest();
-            System.out.println(anlimail.testDefaultInterface());
+//            Anlimail anlimail = new DefaultInterfaceTest();
+//            System.out.println(anlimail.testDefaultInterface());
+
+            /****************************************测试Callable接口 ***********************************/
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    for (int i=0;i<10;i++){
+                        System.out.println(i + "  ");
+                    }
+                }
+            };
+            Call call = new Call();
+            FutureTask futureTask01 = new FutureTask(call);
+            FutureTask futureTask02 = new FutureTask(call);
+            Thread thread01 = new Thread(runnable);
+            Thread thread02 = new Thread(runnable);
+            thread01.start();
+            try {
+                thread01.join();
+            }catch (InterruptedException ex){
+
+            }
+
+            thread02.start();
+
         }
 }
