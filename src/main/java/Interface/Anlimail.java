@@ -13,4 +13,8 @@ public interface Anlimail {
     public abstract String getName();
 
     public abstract void setName(String name);
+
+    default String testDefaultInterface(){
+        return "default test";
+    }
 }

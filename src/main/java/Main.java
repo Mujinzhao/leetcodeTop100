@@ -5,10 +5,7 @@ import Impl.BabyHaShiQi;
 import Impl.Cat;
 import Impl.Dog;
 import Impl.HaShiQi;
-import Interface.AbstractClass;
-import Interface.Anlimail;
-import Interface.ImplAbstract;
-import Interface.TestLamdaFunction;
+import Interface.*;
 import LeetCodeBaseDate.ListNode;
 import Pagkage.Normal;
 import Pagkage.SonNormal;
@@ -18,12 +15,10 @@ import ThreadLocalTest.RunableBank;
 import Unitls.SortTool;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import lombok.Synchronized;
 
 import java.util.*;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -157,46 +152,51 @@ public class Main{
 //            thread02.start();
 
             /********************************  java集合的 fail - fast 现象 *****************************/
-            List<Integer> list = new ArrayList<>();
-            list.add(1);
-            list.add(2);
-            list.add(3);
-            list.add(4);
-            list.add(5);
-            list.add(6);
-            list.add(7);
-            Thread thread01 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Iterator<Integer> iterator = list.iterator();
-                    while(iterator.hasNext()){
-                        int temp = iterator.next();
-                        System.out.println(temp + " ");
-                        try {
-                            TimeUnit.SECONDS.sleep(1);
-                        }catch (InterruptedException ex){
 
-                        }
-                    }
-                }
-            });
+//            List<Integer> list = new CopyOnWriteArrayList<>();
+//
+//            list.add(1);
+//            list.add(2);
+//            list.add(3);
+//            list.add(4);
+//            list.add(5);
+//            list.add(6);
+//            list.add(7);
+//            Thread thread01 = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Iterator<Integer> iterator = list.iterator();
+//                    while(iterator.hasNext()){
+//                        int temp = iterator.next();
+//                        System.out.println(temp + " ");
+//                        try {
+//                            TimeUnit.SECONDS.sleep(1);
+//                        }catch (InterruptedException ex){
+//
+//                        }
+//                    }
+//                }
+//            });
+//
+//            Thread thread02 = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        TimeUnit.SECONDS.sleep(3);
+//                    }catch (InterruptedException ex){
+//
+//                    }
+//                    list.remove(3);
+//                }
+//            });
+//
+//            thread01.start();
+//            thread02.start();
 
-            Thread thread02 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        TimeUnit.SECONDS.sleep(3);
-                    }catch (InterruptedException ex){
+//            System.out.println("main thread over");
 
-                    }
-                    list.remove(3);
-                }
-            });
-
-            thread01.start();
-            thread02.start();
-
-            System.out.println("main thread over");
-
+            /**************************************  测试接口中的默认函数 *********************************/
+            Anlimail anlimail = new DefaultInterfaceTest();
+            System.out.println(anlimail.testDefaultInterface());
         }
 }
