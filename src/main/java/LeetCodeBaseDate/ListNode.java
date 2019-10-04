@@ -1,6 +1,5 @@
 package LeetCodeBaseDate;
 
-import lombok.Data;
 
 /**
  * @ClassName ListNode

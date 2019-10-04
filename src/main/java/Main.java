@@ -33,6 +33,7 @@ import java.util.function.Function;
 
 public class Main{
         public static void main(String args[]){
+                System.out.println("/amgmis/knowldge/abc".startsWith("/amgmis/"));
 //            List<Normal> list = new ArrayList<>();
 //            while(true){
 //                Normal normal = new Normal();
@@ -201,27 +202,27 @@ public class Main{
 //            System.out.println(anlimail.testDefaultInterface());
 
             /****************************************测试Callable接口 ***********************************/
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    for (int i=0;i<10;i++){
-                        System.out.println(i + "  ");
-                    }
-                }
-            };
-            Call call = new Call();
-            FutureTask futureTask01 = new FutureTask(call);
-            FutureTask futureTask02 = new FutureTask(call);
-            Thread thread01 = new Thread(runnable);
-            Thread thread02 = new Thread(runnable);
-            thread01.start();
-            try {
-                thread01.join();
-            }catch (InterruptedException ex){
-
-            }
-
-            thread02.start();
+//            Runnable runnable = new Runnable() {
+//                @Override
+//                public void run() {
+//                    for (int i=0;i<10;i++){
+//                        System.out.println(i + "  ");
+//                    }
+//                }
+//            };
+//            Call call = new Call();
+//            FutureTask futureTask01 = new FutureTask(call);
+//            FutureTask futureTask02 = new FutureTask(call);
+//            Thread thread01 = new Thread(runnable);
+//            Thread thread02 = new Thread(runnable);
+//            thread01.start();
+//            try {
+//                thread01.join();
+//            }catch (InterruptedException ex){
+//
+//            }
+//
+//            thread02.start();
 
         }
 }

@@ -42,5 +42,6 @@ public class MoveZores283 {
              ) {
             System.out.println(one);
         }
+        System.out.println(System.currentTimeMillis());
     }
 }
