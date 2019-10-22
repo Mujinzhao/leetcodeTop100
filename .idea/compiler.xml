@@ -9,8 +9,5 @@
         <module name="history" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Demo" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
