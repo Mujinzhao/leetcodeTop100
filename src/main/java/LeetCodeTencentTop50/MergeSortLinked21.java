@@ -9,10 +9,66 @@ import LeetCodeBaseDate.ListNode;
  * @Date 2019/10/22  11:29 PM
  * @Version 1.0
  */
+
+/**
+ * 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+ *
+ * 示例：
+ *
+ * 输入：1->2->4, 1->3->4
+ * 输出：1->1->2->3->4->4
+ *
+ * 解题思路：可以直接按照数组排序的思想进行链表排序；
+ * 这里学习一下递归的写法！！！！
+ */
 public class MergeSortLinked21 {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        return null;
+        ListNode leftH = new ListNode(Integer.MAX_VALUE);
+        ListNode rightH = new ListNode(Integer.MAX_VALUE);
+        if(l1 == null || l2 == null){
+            return (l1 == null) ? l2 : l1;
+        }
+        leftH.next = l1;
+        rightH.next = l2;
+        ListNode leftCur = l1;
+        ListNode rightCur = l2;
+        while(leftCur != null && rightCur != null){
+            if(leftCur.val <= rightCur.val){
+                leftH.next = leftCur;
+                leftCur = leftCur.next;
+            }else {
+                int temp = leftCur.val;
+                leftCur.val = rightCur.val;
+                rightCur.val = temp;
+
+                rightH.next = rightCur.next;
+                rightCur.next = leftCur.next;
+                leftCur.next = rightCur;
+                rightCur = rightH.next;
+                leftCur = leftCur.next;
+            }
+        }
+        if(rightCur != null){
+            leftH.next.next = rightCur;
+        }
+        return l1;
+    }
+
+    public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
+        if(l1 == null){
+            return l2;
+        }
+        if(l2 == null){
+            return l1;
+        }
+        if(l1.val <= l2.val){
+            l1.next = mergeTwoLists1(l1.next,l2);
+            return l1;
+        }else {
+            l2.next = mergeTwoLists1(l1,l2.next);
+            return l2;
+        }
     }
 
     public static void main(String[] arg){
@@ -41,6 +97,7 @@ public class MergeSortLinked21 {
         listNode9.next = null;
 
         MergeSortLinked21 test = new MergeSortLinked21();
-        test.mergeTwoLists(listNode2,listNode1);
+        ListNode temp = test.mergeTwoLists1(listNode2,listNode1);
+        int a = 0;
     }
 }
