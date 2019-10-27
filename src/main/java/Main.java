@@ -2,6 +2,9 @@ import CallableTest.Call;
 import DeadThread.LockAandB;
 import DeadThread.TestReentranLock;
 import DeadThread.TestSyncLock;
+import DesignModel.DynamicProxy.MyinvokeHandler;
+import DesignModel.DynamicProxy.SubProxyInterface;
+import DesignModel.DynamicProxy.TargetObject;
 import Impl.BabyHaShiQi;
 import Impl.Cat;
 import Impl.Dog;
@@ -18,6 +21,8 @@ import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.Synchronized;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
@@ -31,8 +36,8 @@ import java.util.function.Function;
  * @Version 1.0
  */
 
-public class Main{
-        public static void main(String args[]){
+public class Main {
+    public static void main(String args[]) {
 //            List<Normal> list = new ArrayList<>();
 //            while(true){
 //                Normal normal = new Normal();
@@ -58,7 +63,7 @@ public class Main{
 //
 //            SonNormal sonNormal = new SonNormal();
 //            sonNormal.SonMultiplyMethod("zhang","xinkun");
-            /********************************   Sort   **********************/
+        /********************************   Sort   **********************/
 //            int[] nums = {6,5,4,1,2,3,8,9,5,6,56};
 //            SortTool.mergeSort(nums);
 //            for (int temp:nums
@@ -66,14 +71,14 @@ public class Main{
 //                System.out.println(temp+" ");
 //            }
 
-            /********************************   Synchronzied   **********************/
+        /********************************   Synchronzied   **********************/
 //            MyThread myThread = new MyThread(1000);
 //            Thread thread01 = new Thread(myThread);
 //            Thread thread02 = new Thread(myThread);
 //            thread01.start();
 //            thread02.start();
 
-            /********************************** ThreadLocal      *******************/
+        /********************************** ThreadLocal      *******************/
 //            Bank bank = new Bank();
 //            bank.OutThreadLocal();
 //            System.out.println(Thread.currentThread().getName());
@@ -90,14 +95,14 @@ public class Main{
 //            thread.start();
 //            thread1.start();
 
-            /************************************  布隆过滤器 ************************/
+        /************************************  布隆过滤器 ************************/
 //            BloomFilterTest bloomFilterTest = new BloomFilterTest();
 //            bloomFilterTest.intoBlooFilter();
 //            bloomFilterTest.getFalseVote();
 //
 //            HashMap<Integer,String> hashMap = new HashMap<>();
 //            Hashtable<Integer,String> hashtable = new Hashtable<>();
-            /************************************* DeadThread ********************/
+        /************************************* DeadThread ********************/
 //            LockAandB lockAandB = new LockAandB();
 //            Thread thread01 = new Thread(new Runnable() {
 //                @Override
@@ -115,7 +120,7 @@ public class Main{
 //            thread01.start();
 //            thread02.start();
 //
-            /***************************TEST  synchronized 是不是 从阻塞初  继续执行 **************/
+        /***************************TEST  synchronized 是不是 从阻塞初  继续执行 **************/
 //            TestReentranLock reentranLock = new TestReentranLock();
 //            CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 //            Thread thread01 = new Thread(new Runnable() {
@@ -152,7 +157,7 @@ public class Main{
 //            }
 //            thread02.start();
 
-            /********************************  java集合的 fail - fast 现象 *****************************/
+        /********************************  java集合的 fail - fast 现象 *****************************/
 
 //            List<Integer> list = new CopyOnWriteArrayList<>();
 //
@@ -196,32 +201,41 @@ public class Main{
 
 //            System.out.println("main thread over");
 
-            /**************************************  测试接口中的默认函数 *********************************/
+        /**************************************  测试接口中的默认函数 *********************************/
 //            Anlimail anlimail = new DefaultInterfaceTest();
 //            System.out.println(anlimail.testDefaultInterface());
 
-            /****************************************测试Callable接口 ***********************************/
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    for (int i=0;i<10;i++){
-                        System.out.println(i + "  ");
-                    }
-                }
-            };
-            Call call = new Call();
-            FutureTask futureTask01 = new FutureTask(call);
-            FutureTask futureTask02 = new FutureTask(call);
-            Thread thread01 = new Thread(runnable);
-            Thread thread02 = new Thread(runnable);
-            thread01.start();
-            try {
-                thread01.join();
-            }catch (InterruptedException ex){
+        /****************************************测试Callable接口 ***********************************/
+//            Runnable runnable = new Runnable() {
+//                @Override
+//                public void run() {
+//                    for (int i=0;i<10;i++){
+//                        System.out.println(i + "  ");
+//                    }
+//                }
+//            };
+//            Call call = new Call();
+//            FutureTask futureTask01 = new FutureTask(call);
+//            FutureTask futureTask02 = new FutureTask(call);
+//            Thread thread01 = new Thread(runnable);
+//            Thread thread02 = new Thread(runnable);
+//            thread01.start();
+//            try {
+//                thread01.join();
+//            }catch (InterruptedException ex){
+//
+//            }
+        try {
 
-            }
+            SubProxyInterface  iHello2 = (SubProxyInterface) Proxy.newProxyInstance(TargetObject.class.getClassLoader(),
+                    new Class[]{SubProxyInterface.class},
+                    new MyinvokeHandler(new TargetObject()));
 
-            thread02.start();
-
+            iHello2.say("hello");
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
+
+
+    }
 }

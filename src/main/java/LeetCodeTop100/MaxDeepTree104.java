@@ -52,6 +52,7 @@ public class MaxDeepTree104 {
     public static void main(String[] args){
         MaxDeepTree104 instacne = new MaxDeepTree104();
         TreeNode root = new TreeNode(0);
+        Integer integer = new Integer(1);
 //        TreeNode roo2 = new TreeNode(2);
 //        TreeNode roo3 = new TreeNode(3);
 //        TreeNode roo4 = new TreeNode(4);
