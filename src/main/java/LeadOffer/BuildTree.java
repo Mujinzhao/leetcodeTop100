@@ -18,21 +18,15 @@ public class BuildTree {
             return null;
         }
         TreeNode root = new TreeNode(-1);
-        for(int i =0 ;i<before.length();i++){
-            boolean flag = true;
-            for(int j=0;j<middle.length();j++){
-                if(before.charAt(i) == middle.charAt(j)){
-                    root.val = Long.valueOf(String.valueOf(before.charAt(i))).intValue();
-                    String subMiddleLeft = middle.substring(0,j);
-                    String subMiddleRight = middle.substring(j+1,middle.length());
-                    root.left = buildTreeAsPreAndMiddle(before,subMiddleLeft);
-                    root.right = buildTreeAsPreAndMiddle(before,subMiddleRight);
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag == false){
-                break;
+        for(int i=0 ;i<before.length();i++){
+            if(middle.contains(String.valueOf(before.charAt(i)))){
+                int index = middle.indexOf(before.charAt(i));
+                String leftMiddle = middle.substring(0,index);
+                String rightMiddle = middle.substring(index+1,middle.length());
+                root.val = Long.valueOf(String.valueOf(before.charAt(i))).intValue();
+                root.left = buildTreeAsPreAndMiddle(before,leftMiddle);
+                root.right = buildTreeAsPreAndMiddle(before,rightMiddle);
+                return root;
             }
         }
         return root;

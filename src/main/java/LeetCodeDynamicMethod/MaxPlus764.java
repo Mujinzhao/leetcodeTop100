@@ -8,6 +8,8 @@ package LeetCodeDynamicMethod;
  * @Version 1.0
  */
 
+import LeetCodeBaseDate.ListNode;
+
 /**
  * //在一个大小在 (0, 0) 到 (N-1, N-1) 的2D网格 grid 中，除了在 mines 中给出的单元为 0，其他每个单元都是 1。网格中包含 1 的最大的轴对齐加号标志是多少阶？返回加号标志的阶数。如果未找到加号标志，则返回 0。
  * //
@@ -147,6 +149,22 @@ public class MaxPlus764 {
             }
         }
         return ans;
+    }
+
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null){
+            return l2;
+        }
+        if(l2 == null){
+            return l1;
+        }
+        if(l1.val <= l2.val){
+            l1.next = mergeTwoLists(l1.next,l2);
+            return l1;
+        }else {
+            l2.next = mergeTwoLists(l1,l2.next);
+            return l2;
+        }
     }
 
 

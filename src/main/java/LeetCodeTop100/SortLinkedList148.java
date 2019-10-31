@@ -94,41 +94,34 @@ public class SortLinkedList148 {
     }
 
     public static void main(String[] args){
-//        int[] nums = {4,3,2,7,8,6,1,5};
-//        SortLinkedList148 test = new SortLinkedList148();
-//        test.joinSort(nums);
-//        int a = 1;
-//
-//        ListNode listNode1 = new ListNode(1);
-//        ListNode listNode3 = new ListNode(3);
-//        ListNode listNode5 = new ListNode(5);
-//        ListNode listNode7 = new ListNode(7);
-//        ListNode listNode9 = new ListNode(9);
-//
-//        ListNode listNode2 = new ListNode(2);
-//        ListNode listNode4 = new ListNode(4);
-//        ListNode listNode6 = new ListNode(6);
-//        ListNode listNode8 = new ListNode(8);
-//        ListNode listNode10 = new ListNode(10);
-//
-//        listNode1.next = listNode3;
-//        listNode3.next = listNode5;
-//        listNode5.next = listNode7;
-//        listNode7.next = listNode9;
-//        listNode9.next = null;
-//
-//        listNode2.next = listNode4;
-//        listNode4.next = listNode6;
-//        listNode6.next = listNode8;
-//        listNode8.next = listNode10;
-//        listNode10.next = null;
-//        test.mergeSortLinked(listNode1,listNode2);
-        double a = Math.random();
-        System.out.println(a);
-        if( a < 0.5){
-            System.out.println("出门玩");
-        }else {
-            System.out.println("在家学习");
-        }
+        int[] nums = {4,3,2,7,8,6,1,5};
+        SortLinkedList148 test = new SortLinkedList148();
+        test.joinSort(nums);
+        int a = 1;
+
+        ListNode listNode1 = new ListNode(1);
+        ListNode listNode3 = new ListNode(3);
+        ListNode listNode5 = new ListNode(5);
+        ListNode listNode7 = new ListNode(7);
+        ListNode listNode9 = new ListNode(9);
+
+        ListNode listNode2 = new ListNode(2);
+        ListNode listNode4 = new ListNode(4);
+        ListNode listNode6 = new ListNode(6);
+        ListNode listNode8 = new ListNode(8);
+        ListNode listNode10 = new ListNode(10);
+
+        listNode1.next = listNode3;
+        listNode3.next = listNode5;
+        listNode5.next = listNode7;
+        listNode7.next = listNode9;
+        listNode9.next = null;
+
+        listNode2.next = listNode4;
+        listNode4.next = listNode6;
+        listNode6.next = listNode8;
+        listNode8.next = listNode10;
+        listNode10.next = null;
+        test.mergeSortLinked(listNode1,listNode2);
     }
 }
