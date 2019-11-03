@@ -3,6 +3,9 @@ package LeadOffer;
 import LeetCodeBaseDate.TreeNode;
 import apple.laf.JRSUIUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 根据前序、中序 或者 后序，中序，建立唯一二叉树
  */
@@ -63,14 +66,45 @@ public class BuildTree {
         return root;
     }
 
+    Map<Integer,Integer> midRecord = new HashMap();
+
+    /**
+     * 预先存一下 中序遍历的节点，就可以不用每次都遍历去找 根节点在哪个位置出现的了
+     *
+     * @param preorder
+     * @param inorder
+     * @return
+     */
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for(int i=0;i<inorder.length;i++){
+            midRecord.put(inorder[i],i);
+        }
+        return helper(preorder,0,preorder.length,inorder,0,inorder.length);
+    }
+
+    public TreeNode helper(int[] pre,int pStart,int pEnd,int[] mid,int mStart,int mEnd){
+        if(pStart == pEnd){
+            return null;
+        }
+        int index = this.midRecord.get(pre[pStart]);
+        TreeNode root = new TreeNode(pre[pStart]);
+        int leftNum = index - mStart;
+        int rightNum = mEnd - index;
+        root.left = helper(pre,pStart+1,pStart+leftNum+1,mid,mStart,index);
+        root.right = helper(pre,pStart+1+leftNum,pEnd,mid,index+1,mEnd);
+        return root;
+    }
+
     public static void main(String[] args){
         String before = "1245367";
+        int[] pre = {1,2,4,5,3,6,7};
         String middle = "2541637";
+        int[] mid = {2,5,4,1,6,3,7};
         String last = "5426731";
         TreeNode root = new TreeNode(-1);
         BuildTree test = new BuildTree();
-        root = test.buildTreeAsPreAndMiddle(before,middle);
-        root = test.buildTreeAsLastAndMiddle(last,middle);
+        root = test.buildTree(pre,mid);
         int a = 0;
     }
 }

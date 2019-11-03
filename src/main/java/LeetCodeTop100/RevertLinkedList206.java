@@ -2,6 +2,8 @@ package LeetCodeTop100;
 
 import LeetCodeBaseDate.ListNode;
 
+import java.util.List;
+
 /**
  * @ClassName RevertLinkedList206
  * @Description TODO
@@ -54,6 +56,27 @@ public class RevertLinkedList206 {
         }
     }
 
+    public void backwardPrint(ListNode head){
+        if(head == null){
+            return ;
+        }
+        backwardPrint(head.next);
+        System.out.println(head.val);
+    }
+
+    //递归方式
+    public ListNode reverseList2(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode newHead = reverseList2(head.next);
+
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
+    }
+
     public static void main(String[] args){
         RevertLinkedList206 instance = new RevertLinkedList206();
 
@@ -70,8 +93,9 @@ public class RevertLinkedList206 {
 
         instance.pint(listNode1);
 
-        ListNode nHead = instance.reverseList(listNode1);
+        ListNode nHead = instance.reverseList2(listNode1);
 
         instance.pint(nHead);
+        instance.backwardPrint(nHead);
     }
 }
