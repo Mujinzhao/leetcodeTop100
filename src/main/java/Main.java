@@ -27,6 +27,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.regex.Pattern;
 
 /**
  * @ClassName Main
@@ -37,7 +38,15 @@ import java.util.function.Function;
  */
 
 public class Main {
+    private Pattern pattern = Pattern.compile("[0-9]*");
     public static void main(String args[]) {
+        String number = "-12321421321s";
+        String number1 = "21321531321";
+        String number2 = "-421321";
+        Main test = new Main();
+        System.out.println(test.pattern.matcher(number).matches());
+        System.out.println(test.pattern.matcher(number1).matches());
+        System.out.println(test.pattern.matcher(number2).matches());
 //            List<Normal> list = new ArrayList<>();
 //            while(true){
 //                Normal normal = new Normal();
@@ -225,6 +234,7 @@ public class Main {
 //            }catch (InterruptedException ex){
 //
 //            }
+
         try {
 
             SubProxyInterface  iHello2 = (SubProxyInterface) Proxy.newProxyInstance(TargetObject.class.getClassLoader(),
