@@ -10,13 +10,20 @@ import Impl.Cat;
 import Impl.Dog;
 import Impl.HaShiQi;
 import Interface.*;
+import JacksonTest.CompanyInfo;
 import LeetCodeBaseDate.ListNode;
+import LeetCodeTop100.TopK215;
 import Pagkage.Normal;
 import Pagkage.SonNormal;
 import Redis.BloomFilterTest;
 import ThreadLocalTest.Bank;
 import ThreadLocalTest.RunableBank;
+import ThreadLocalTest.SellTickte;
+import ThreadPoolTool.ThreadPool;
 import Unitls.SortTool;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.Synchronized;
@@ -39,14 +46,8 @@ import java.util.regex.Pattern;
 
 public class Main {
     private Pattern pattern = Pattern.compile("[0-9]*");
+
     public static void main(String args[]) {
-        String number = "-12321421321s";
-        String number1 = "21321531321";
-        String number2 = "-421321";
-        Main test = new Main();
-        System.out.println(test.pattern.matcher(number).matches());
-        System.out.println(test.pattern.matcher(number1).matches());
-        System.out.println(test.pattern.matcher(number2).matches());
 //            List<Normal> list = new ArrayList<>();
 //            while(true){
 //                Normal normal = new Normal();
@@ -235,17 +236,122 @@ public class Main {
 //
 //            }
 
-        try {
+//        try {
+//
+//            SubProxyInterface  iHello2 = (SubProxyInterface) Proxy.newProxyInstance(TargetObject.class.getClassLoader(),
+//                    new Class[]{SubProxyInterface.class},
+//                    new MyinvokeHandler(new TargetObject()));
+//
+//            iHello2.say("hello");
+//        }catch (Exception e){
+//            System.out.println(e.toString());
+//        }
+//        SellTickte sellTickte = new SellTickte();
+//        CountDownLatch latch = new CountDownLatch(1);
+//
+//        Thread thread0 = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    latch.await();
+//                }catch (InterruptedException ex){
+//
+//                }
+//                sellTickte.sell();
+//            }
+//        };
+//        Thread thread1 = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    latch.await();
+//                }catch (InterruptedException ex){
+//
+//                }
+//                sellTickte.sell();
+//            }
+//        };
+//        Thread thread2 = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    latch.await();
+//                }catch (InterruptedException ex){
+//
+//                }
+//                sellTickte.sell();
+//            }
+//        };
+//        Thread thread3 = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    latch.await();
+//                }catch (InterruptedException ex){
+//
+//                }
+//                sellTickte.sell();
+//            }
+//        };
+//        thread0.start();
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+//        latch.countDown();
+        Object ob = new Object();
+        CountDownLatch countA = new CountDownLatch(1);
+        CountDownLatch countB = new CountDownLatch(1);
 
-            SubProxyInterface  iHello2 = (SubProxyInterface) Proxy.newProxyInstance(TargetObject.class.getClassLoader(),
-                    new Class[]{SubProxyInterface.class},
-                    new MyinvokeHandler(new TargetObject()));
+        Thread thread0 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("1");
+                countA.countDown();
+            }
+        });
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    countA.await();
+                } catch (Exception ex) {
 
-            iHello2.say("hello");
-        }catch (Exception e){
-            System.out.println(e.toString());
+                }
+                System.out.println("2");
+                countB.countDown();
+            }
+        });
+        Thread thread2 = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    countB.await();
+                } catch (Exception ex) {
+
+                }
+                System.out.println("3");
+            }
+        };
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return "asdf";
+            }
+        };
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
+        List<Future<String>> result = new ArrayList<>();
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+
+        thread2.start();
+        thread1.start();
+        thread0.start();
+
+        for(int i=1;i<100000;i++){
+            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
         }
-
-
     }
 }
