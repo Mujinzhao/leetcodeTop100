@@ -47,6 +47,7 @@ public class Main {
         System.out.println(test.pattern.matcher(number).matches());
         System.out.println(test.pattern.matcher(number1).matches());
         System.out.println(test.pattern.matcher(number2).matches());
+        StringBuilder stringBuilder = new StringBuilder(number);
 //            List<Normal> list = new ArrayList<>();
 //            while(true){
 //                Normal normal = new Normal();
