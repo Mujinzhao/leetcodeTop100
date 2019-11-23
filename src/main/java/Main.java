@@ -350,8 +350,8 @@ public class Main {
         thread1.start();
         thread0.start();
 
-        for(int i=1;i<100000;i++){
-            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
-        }
+//        for(int i=1;i<100000;i++){
+//            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
+//        }
     }
 }
