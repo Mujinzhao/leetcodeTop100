@@ -355,5 +355,7 @@ public class Main {
 //        }
         String name = "123";
         System.out.println(name.substring(2,3));
+
+        System.out.println("123".startsWith("123"));
     }
 }

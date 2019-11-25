@@ -1,4 +1,4 @@
-package LeetCodeTop100;
+package LeetCodeDynamicMethod;
 
 /**
  * @ClassName MaxLenSubList300
