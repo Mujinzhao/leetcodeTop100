@@ -298,6 +298,62 @@ public class Main {
 //        thread2.start();
 //        thread3.start();
 //        latch.countDown();
+        Object ob = new Object();
+        CountDownLatch countA = new CountDownLatch(1);
+        CountDownLatch countB = new CountDownLatch(1);
+
+        Thread thread0 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("1");
+                countA.countDown();
+            }
+        });
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    countA.await();
+                } catch (Exception ex) {
+
+                }
+                System.out.println("2");
+                countB.countDown();
+            }
+        });
+        Thread thread2 = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    countB.await();
+                } catch (Exception ex) {
+
+                }
+                System.out.println("3");
+            }
+        };
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return "asdf";
+            }
+        };
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
+        List<Future<String>> result = new ArrayList<>();
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+        result.add(threadPool.submit(callable));
+
+        thread2.start();
+        thread1.start();
+        thread0.start();
+
+//        for(int i=1;i<100000;i++){
+//            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
+//        }
+
 //        Object ob = new Object();
 //        CountDownLatch countA = new CountDownLatch(1);
 //        CountDownLatch countB = new CountDownLatch(1);
@@ -353,9 +409,5 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
-        String name = "123";
-        System.out.println(name.substring(2,3));
-
-        System.out.println("123".startsWith("123"));
     }
 }
