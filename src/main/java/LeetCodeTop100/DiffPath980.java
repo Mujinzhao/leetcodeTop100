@@ -105,25 +105,80 @@ public class DiffPath980 {
 
 
     int ans = 0;
+    int[][] visit;
+    int[] dircX = {-1,1,0,0};
+    int[] dircY = {0,0,-1,1};
+    int n = 0;
+    int m = 0;
 
     public int uniquePathsIII(int[][] grid) {
         ans = 0;
-        int n = grid.length;
-        int m = grid[0].length;
+        n = grid.length;
+        m = grid[0].length;
         int startX = 0;
         int startY = 0;
         int endX = 0;
         int endY = 0;
+        visit = new int[n][m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j] == 1){
                     startX = i;
                     startY = j;
                 }
-//                if(grid[])
+                if(grid[i][j] == 2){
+                    endX = i;
+                    endY = j;
+                }
             }
         }
-//        solve(grid);
-        return 0;
+        visit[startX][startY] = 1;
+        solve(grid,startX,startY,endX,endY);
+        return ans;
+    }
+
+    public boolean isOk(int x,int y,int[][] grid,int[][] visit){
+        if(x>=0 && x<n && y>=0 && y<m && (grid[x][y] != -1) && visit[x][y] == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void solve(int[][] grid,int x,int y,int endX,int endY){
+        if(x == endX && y == endY){
+            visit[x][y] = 1;
+            boolean count = true;
+            for(int i=0;i<n;i++){
+                for(int j=0;j<m;j++){
+                    if(grid[i][j] != -1){
+                        if(visit[i][j] == 0){
+                            count = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(count){
+                ans++;
+            }
+            visit[x][y] = 0;
+            return;
+        }
+
+        for(int i=0;i<4;i++){
+            int nextX = x+dircX[i];
+            int nextY = y+dircY[i];
+            if(isOk(nextX,nextY,grid,visit)){
+                visit[nextX][nextY] = 1;
+                solve(grid,nextX,nextY,endX,endY);
+                visit[nextX][nextY] = 0;
+            }
+        }
+    }
+
+    public static void main(String[] args){
+        int[][] grid = {{1,0,0,0},{0,0,0,0},{0,0,0,2}};
+        DiffPath980 test = new DiffPath980();
+        test.uniquePathsIII(grid);
     }
 }

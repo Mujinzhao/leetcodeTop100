@@ -8,5 +8,7 @@ package DesignModel.DynamicProxy;
  * @Version 1.0
  */
 public interface SubProxyInterface {
-    public abstract void say(String name);
+    public abstract void say(String name,Integer age);
+
+    public abstract void hello(String word);
 }
