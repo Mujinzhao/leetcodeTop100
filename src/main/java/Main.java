@@ -341,6 +341,7 @@ public class Main {
 //            }
 //        };
 //        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
+//        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(20));
 //        List<Future<String>> result = new ArrayList<>();
 //        result.add(threadPool.submit(callable));
 //        result.add(threadPool.submit(callable));
@@ -411,17 +412,5 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
-        Integer[] nums = {4,1,2,7,3,6,5,4,8,9,12,32,11,5,4,3,15};
-        Arrays.sort(nums,new Comparator<Integer>(){
-            @Override
-            public int compare(Integer a,Integer b){
-                if(a.intValue() > b.intValue()){
-                    return -1;
-                }else{
-                    return 1;
-                }
-            }
-        });
-        System.out.println(JSON.toJSONString(nums));
     }
 }
