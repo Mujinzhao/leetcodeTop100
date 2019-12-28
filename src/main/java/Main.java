@@ -21,11 +21,13 @@ import ThreadLocalTest.RunableBank;
 import ThreadLocalTest.SellTickte;
 import ThreadPoolTool.ThreadPool;
 import Unitls.SortTool;
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import com.sun.tools.hat.internal.util.Comparer;
 import lombok.Synchronized;
 
 import java.lang.reflect.Constructor;
@@ -298,57 +300,57 @@ public class Main {
 //        thread2.start();
 //        thread3.start();
 //        latch.countDown();
-        Object ob = new Object();
-        CountDownLatch countA = new CountDownLatch(1);
-        CountDownLatch countB = new CountDownLatch(1);
-
-        Thread thread0 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("1");
-                countA.countDown();
-            }
-        });
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    countA.await();
-                } catch (Exception ex) {
-
-                }
-                System.out.println("2");
-                countB.countDown();
-            }
-        });
-        Thread thread2 = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    countB.await();
-                } catch (Exception ex) {
-
-                }
-                System.out.println("3");
-            }
-        };
-        Callable<String> callable = new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "asdf";
-            }
-        };
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
-        List<Future<String>> result = new ArrayList<>();
-        result.add(threadPool.submit(callable));
-        result.add(threadPool.submit(callable));
-        result.add(threadPool.submit(callable));
-        result.add(threadPool.submit(callable));
-        result.add(threadPool.submit(callable));
-
-        thread2.start();
-        thread1.start();
-        thread0.start();
+//        Object ob = new Object();
+//        CountDownLatch countA = new CountDownLatch(1);
+//        CountDownLatch countB = new CountDownLatch(1);
+//
+//        Thread thread0 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println("1");
+//                countA.countDown();
+//            }
+//        });
+//        Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    countA.await();
+//                } catch (Exception ex) {
+//
+//                }
+//                System.out.println("2");
+//                countB.countDown();
+//            }
+//        });
+//        Thread thread2 = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    countB.await();
+//                } catch (Exception ex) {
+//
+//                }
+//                System.out.println("3");
+//            }
+//        };
+//        Callable<String> callable = new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                return "asdf";
+//            }
+//        };
+//        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
+//        List<Future<String>> result = new ArrayList<>();
+//        result.add(threadPool.submit(callable));
+//        result.add(threadPool.submit(callable));
+//        result.add(threadPool.submit(callable));
+//        result.add(threadPool.submit(callable));
+//        result.add(threadPool.submit(callable));
+//
+//        thread2.start();
+//        thread1.start();
+//        thread0.start();
 
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
@@ -409,5 +411,17 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
+        Integer[] nums = {4,1,2,7,3,6,5,4,8,9,12,32,11,5,4,3,15};
+        Arrays.sort(nums,new Comparator<Integer>(){
+            @Override
+            public int compare(Integer a,Integer b){
+                if(a.intValue() > b.intValue()){
+                    return -1;
+                }else{
+                    return 1;
+                }
+            }
+        });
+        System.out.println(JSON.toJSONString(nums));
     }
 }
