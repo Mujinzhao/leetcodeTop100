@@ -409,11 +409,7 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
-
-        Integer a = new Integer(1);
-        int b = 1;
-        System.out.println(a == b);
-
-        System.out.println(a.equals(b));
+        int a = 5;
+        System.out.println(a&2);
     }
 }

@@ -56,7 +56,8 @@ public class GetStones877 {
                 if((j-i)%2 == 1){
                     dp[i][j] = Math.max((piles[i] + dp[i+1][j]) , (piles[j] + dp[i][j-1]));
                 }else{
-                    dp[i][j] = Math.max((-piles[i] + dp[i+1][j]) , (-piles[j] + dp[i][j-1]));
+                    //对手让第一个获得最小值，他自己才能是最大值
+                    dp[i][j] = Math.min((-piles[i] + dp[i+1][j]) , (-piles[j] + dp[i][j-1]));
                 }
             }
         }
