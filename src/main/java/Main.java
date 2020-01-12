@@ -21,11 +21,13 @@ import ThreadLocalTest.RunableBank;
 import ThreadLocalTest.SellTickte;
 import ThreadPoolTool.ThreadPool;
 import Unitls.SortTool;
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import com.sun.tools.hat.internal.util.Comparer;
 import lombok.Synchronized;
 
 import java.lang.reflect.Constructor;
@@ -338,6 +340,7 @@ public class Main {
 //                return "asdf";
 //            }
 //        };
+//        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2));
 //        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(20));
 //        List<Future<String>> result = new ArrayList<>();
 //        result.add(threadPool.submit(callable));
@@ -409,7 +412,10 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
-        int a = 5;
-        System.out.println(a&2);
+        String temp = "2,5,5,25511135";
+        String[] ip = temp.split(",");
+        for(int i=0;i<ip.length;i++){
+            System.out.println(ip[i]);
+        }
     }
 }
