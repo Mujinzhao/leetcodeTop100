@@ -37,7 +37,7 @@ import java.util.Map;
  *
  * 解析：直接看代码
  */
-public class 合并二叉树617 {
+public class 二叉树合并617 {
     Map<Character,Integer> map = new HashMap<>();
     //先序遍历的一种应用
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {

@@ -42,12 +42,9 @@ package LeetCodeTop100;
  * 二分数组的取值范围，去找在这个范围内，数组中出现了多少次，如果符合一个萝卜一个坑，那么就在更大的范围，如果不符合继续缩小此范围。代码如下：
  *
  */
-public class FindNumber287 {
+public class 寻找重复数287 {
     public int findDuplicate(int[] nums) {
         int left = 0;
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.charAt(1);
-        stringBuffer.length();
         int right = nums.length - 1;
         while(left < right){
             int mid = (left + right - left) >> 1;
@@ -67,8 +64,37 @@ public class FindNumber287 {
     }
 
     public static void main(String[] args){
-        FindNumber287 instance = new FindNumber287();
+        寻找重复数287 instance = new 寻找重复数287();
         int[] nums = {5,4,3,2,1,2};
         System.out.println(instance.findDuplicate(nums));
+        class Point{
+            int x;
+            int y;
+            int step = 0;
+
+            public int getX() {
+                return x;
+            }
+
+            public void setX(int x) {
+                this.x = x;
+            }
+
+            public int getY() {
+                return y;
+            }
+
+            public void setY(int y) {
+                this.y = y;
+            }
+
+            public int getStep() {
+                return step;
+            }
+
+            public void setStep(int step) {
+                this.step = step;
+            }
+        }
     }
 }

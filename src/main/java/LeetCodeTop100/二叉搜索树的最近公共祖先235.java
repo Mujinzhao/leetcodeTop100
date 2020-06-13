@@ -35,7 +35,7 @@ import LeetCodeBaseDate.TreeNode;
  *
  *  当然也可以进行优化，都大于根节点的时候，只遍历右子树，都小于的时候，只遍历左子树即可。
  */
-public class LCA_BST235 {
+public class 二叉搜索树的最近公共祖先235 {
     TreeNode ans;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         ans = null;

@@ -412,10 +412,12 @@ public class Main {
 //        for(int i=1;i<100000;i++){
 //            String sql = "INSERT INTO `xinkun`.`User` (`id`, `userid`, `bizid`, `name`, `tel`) VALUES (NULL, '1', '1', '测试部门', '18637359032');";
 //        }
-        String temp = "2,5,5,25511135";
-        String[] ip = temp.split(",");
-        for(int i=0;i<ip.length;i++){
-            System.out.println(ip[i]);
-        }
+//        ExecutorService threadPool = new ThreadPoolExecutor(1,2,100,TimeUnit.MILLISECONDS,new ArrayBlockingQueue(2),Executors.defaultThreadFactory());
+//        for(int i=0;i<5;i++){
+//            threadPool.submit(() -> {
+//                System.out.println(Thread.currentThread().getName());
+//            });
+//        }
+//        threadPool.shutdown();
     }
 }

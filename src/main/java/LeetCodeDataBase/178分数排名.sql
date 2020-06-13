@@ -28,3 +28,11 @@ from Scores A inner join Scores B
 where A.Score <= B.Score
 group by A.Id,A.Score
 order by Rank asc
+
+
+或者
+
+select A.Score,count(distinct(B.Score))+1 as Rank
+from Scores A left join Scores B on A.Score < B.Score and A.Id<>B.Id
+group by A.Id,A.Score
+order by A.Score desc

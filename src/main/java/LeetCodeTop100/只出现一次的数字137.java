@@ -26,6 +26,8 @@ package LeetCodeTop100;
  * 解析：普通解法：每一位都用一个数字保存一下，1出现了多少次，最后判断出现的次数是不是1的3倍即可
  *
  * 一般的写法：位运算，设计一个k进制的无进位加法计算器。
+ *
+ * https://blog.csdn.net/qq_41231926/article/details/85758627
  */
 public class 只出现一次的数字137 {
     public int singleNumber(int[] nums) {

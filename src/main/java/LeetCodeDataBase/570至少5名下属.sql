@@ -33,3 +33,8 @@ where Id in
 from (select * from Employee where Id != ManagerId) as temp
 group by temp.ManagerId
 having count(*) >= 5)
+
+select A.Name as Name
+from Employee A left join Employee B on A.Id = B.ManagerId
+group by A.Id
+having count(*) > 5
