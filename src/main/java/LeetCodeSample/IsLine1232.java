@@ -1,5 +1,6 @@
 package LeetCodeSample;
 
+
 public class IsLine1232 {
     public boolean checkStraightLine(int[][] coordinates) {
         boolean ans = true;

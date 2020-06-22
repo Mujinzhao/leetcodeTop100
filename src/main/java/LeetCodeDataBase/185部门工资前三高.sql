@@ -51,3 +51,13 @@ order by Department.Name asc,temp.Salary desc,temp.name asc
 可以这么理解：每个人比较的是 部门中有哪几种不同的工资高于自己，而不是哪几个人的工资高于自己！！
 
 这一题就是分数排名的升级版
+
+
+select D.Name as Department,E.Name as Employee,E.Salary as Salary
+from Employee E ,
+(select A.Id as Id
+from Employee A left join Employee B on A.Id<>B.Id and A.Salary<B.Salary and A.DepartmentId = B.DepartmentId
+group by A.Id
+having count(distinct(B.Salary)) < 3) as temp,Department D
+where E.Id = temp.Id and E.DepartmentId = D.Id
+order by D.Id asc,E.Salary desc

@@ -26,6 +26,7 @@ public class 俄罗斯套娃问题354 {
         // 按宽度升序排列，如果宽度一样，则按高度降序排列
         Arrays.sort(envelopes, new Comparator<int[]>()
         {
+            @Override
             public int compare(int[] a, int[] b) {
                 return a[0] == b[0] ?
                         b[1] - a[1] : a[0] - b[0];

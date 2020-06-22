@@ -50,60 +50,6 @@ package LeetCodeTop100;
  * 解析使用深度优先算法进行计算。
  */
 public class DiffPath980 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     int ans = 0;
     int[][] visit;
     int[] dircX = {-1,1,0,0};

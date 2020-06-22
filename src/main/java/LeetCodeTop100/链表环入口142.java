@@ -37,7 +37,7 @@ import LeetCodeBaseDate.ListNode;
  * 链表判环的入口，证明：https://www.jianshu.com/p/83eed68cbb46
  *
  */
-public class CircleList142 {
+public class 链表环入口142 {
     public ListNode detectCycle(ListNode head) {
         if(head == null){
             return null;

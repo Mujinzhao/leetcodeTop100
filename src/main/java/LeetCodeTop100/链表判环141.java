@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * 判断链表是否有环
  */
-public class CircleList141 {
+public class 链表判环141 {
     public boolean hasCycle(ListNode head) {
         if(head == null || head.next == null){
             return false;

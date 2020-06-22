@@ -40,10 +40,8 @@ import java.util.Queue;
  * 解析：先用直观的方法写一遍，搜索方法
  */
 public class HowManySearchTree95 {
-    List<TreeNode> ans = new ArrayList<>();
-
     public List<TreeNode> generateTrees(int n) {
-        ans = new ArrayList<>();
+        List<TreeNode> ans=new ArrayList();
         if(n == 0){
             return ans;
         }
@@ -51,23 +49,23 @@ public class HowManySearchTree95 {
             ans.add(new TreeNode(1));
             return ans;
         }
-        return solve(1,n);
+        return help(1,n);
     }
 
-    public List<TreeNode> solve(int start,int end){
-
+    public List<TreeNode> help(int start,int end){
+        List<TreeNode> ans=new ArrayList();;
         if(start > end){
             ans.add(null);
             return ans;
         }
         for(int i=start;i<=end;i++){
-            List<TreeNode> leftSub = solve(start,i-1);
-            List<TreeNode> rightSub = solve(i+1,end);
-            TreeNode root = new TreeNode(i);
-            for(TreeNode left:leftSub){
-                for(TreeNode right:rightSub){
-                    root.left = left;
-                    root.right = right;
+            List<TreeNode> left = help(start,i-1);
+            List<TreeNode> right = help(i+1,end);
+            for(TreeNode temp:left){
+                for(TreeNode tr:right){
+                    TreeNode root = new TreeNode(i);
+                    root.left = temp;
+                    root.right = tr;
                     ans.add(root);
                 }
             }
