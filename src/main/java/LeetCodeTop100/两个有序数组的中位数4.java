@@ -1,6 +1,7 @@
 package LeetCodeTop100;
 
 /**
+ *
  * @ClassName 两个有序数组的中位数4
  * @Author zhangxinkun
  * @Date 2019/12/31  12:44 PM
@@ -60,5 +61,11 @@ public class 两个有序数组的中位数4 {
             }
         }
         return (Math.max(l1,l2)+Math.min(r1,r2))/2.0;
+    }
+    public static void main(String[] args){
+        int[] nums1 = {2};
+        int[] nums2 = {1,3};
+        两个有序数组的中位数4 test = new 两个有序数组的中位数4();
+        test.findMedianSortedArrays(nums1,nums2);
     }
 }
