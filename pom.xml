@@ -10,7 +10,7 @@
 
     <properties>
         <jackson.verison>2.7.3</jackson.verison>
-        <dubbo.version>2.7.5</dubbo.version>
+        <dubbo.version>2.7.15</dubbo.version>
     </properties>
 
 
